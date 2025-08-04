@@ -6,6 +6,7 @@ import Header from './config/header'
 import Footer from './config/footer'
 import Blog from './page/blog'
 import BlogDetial from './page/blog/blogDetails'
+import AppPage from './page/app';
 
 const { Content } = Layout;
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
                     <Route path='/home' element={<Home />} />
                     <Route path='/blog' element={<Blog />} />
                     <Route path='/blog/:id' element={<BlogDetial />} />
+                    <Route path='/app' element={<AppPage />} />
                 </Routes>
             </Content>
             <Footer />
