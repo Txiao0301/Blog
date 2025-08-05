@@ -1,44 +1,88 @@
 import React, { useState } from 'react';
 import Board from './board/index';
+import Popup from '../popup/index';
 
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
+  const [description, setDescription] = useState('Start');
+  const [start, setStart] = useState(false);
+  const [showResetModal, setShowResetModal] = useState(false); // 新增弹窗状态
 
   function handlePlay(nextSquares: Array<string | null>) {
+    if (!start) {
+      return;
+    }
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-  }
-
-  function jumpTo(nextMove: number) {
-    setCurrentMove(nextMove);
-  }
-
-  const moves = history.map((squares, move) => {
-    let description;
-    if (move > 0) {
-      description = 'Go to move #' + move;
+    if (nextHistory.length > 1) {
     } else {
-      description = 'Go to game start';
+      setDescription('Start');
     }
-    return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
-      </li>
-    );
-  });
+  }
+
+  function moveBack() {
+    if (currentMove > 0) {
+      setCurrentMove(history.length - 2);
+      history.pop();
+      setHistory([...history]);
+    }
+  }
+
+  function startGame() {
+    setStart(true);
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
+    setDescription('Move');
+  }
+
+  function resetGame() {
+    setShowResetModal(true); // 显示弹窗
+  }
+
+  function confirmResetGame() {
+    setStart(false);
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
+    setDescription('Start');
+    setShowResetModal(false); // 关闭弹窗
+  }
+
+  function cancelResetGame() {
+    setShowResetModal(false);
+  }
+
+  function gameInfo() {
+    if (!start) {
+      return <div className="game-info">
+        <ol><button onClick={() => startGame()}>{description}</button></ol>
+      </div>
+    }
+    return <div className="game-info">
+      <ol>
+        <button onClick={() => moveBack()}>{description}</button>
+        <button onClick={resetGame} style={{ marginLeft: 8 }}>重置</button>
+      </ol>
+    </div>
+  }
 
   return (
     <div className="game">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} resetGame={resetGame} />
       </div>
       <div className="game-info">
-        <ol>{moves}</ol>
+        {gameInfo()}
       </div>
+      <Popup
+        showModal={showResetModal}
+        content="确定要重置游戏吗？"
+        confirm={confirmResetGame}
+        cancel={cancelResetGame}
+      />
     </div>
   );
 }
