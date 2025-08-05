@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Board from './board/index';
 import Popup from '../popup/index';
+import './index.css';
 
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
