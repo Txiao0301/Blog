@@ -14,7 +14,7 @@ function MyHeader() {
 
     function gotoPage(ele:any) {
         const path = ele.key
-        window.location.href = '/' + path
+        window.location.href = '/#/' + path
     }
 
     return (

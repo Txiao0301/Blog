@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../../mock/blog.js';
 
 const BlogList: React.FC = () => {
+
     const {
         token: { fontSizeHeading4 },
     } = theme.useToken();
@@ -40,7 +41,7 @@ const BlogList: React.FC = () => {
                     dataSource={list}
                     renderItem={({ id, title }) => (
                         <List.Item onClick={() => {
-                            window.location.href = 'blog/' + id
+                            window.open(`/#/blog/${id}`, '_blank');
                         }}>
                             {title}
                         </List.Item>
