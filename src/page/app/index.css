@@ -1,0 +1,14 @@
+.title{
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  height: 0.5px; /* 分割线高度 */
+  background-color: #ddd; /* 分割线颜色 */
+  margin: 10px 0; /* 分割线间距 */
+}

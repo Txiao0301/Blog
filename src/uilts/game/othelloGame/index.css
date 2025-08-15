@@ -1,0 +1,123 @@
+.reversi-game {
+    font-family: Arial, sans-serif;
+    max-width: 524px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.reversi-game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.reversi-player-turn {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.reversi-player-turn.black {
+    background-color: black;
+    color: white;
+}
+
+.reversi-player-turn.white {
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid #ccc;
+}
+
+.reversi-scores {
+    display: flex;
+    gap: 15px;
+    font-size: 1.2em;
+}
+
+.reversi-board {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #333;
+    background-color: #ffffff;
+}
+
+.reversi-board-row {
+    display: flex;
+}
+
+.reversi-cell {
+    width: 60px;
+    height: 60px;
+    border: 1px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.reversi-cell:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.reversi-hint .reversi-hint-dot {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.reversi-piece {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.reversi-piece.reversi-black {
+    background: radial-gradient(circle at 30% 30%, #555, #000);
+    box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.8);
+}
+
+.reversi-piece.reversi-white {
+    background: radial-gradient(circle at 30% 30%, #fff, #ccc);
+    box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.reversi-game-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.reversi-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.reversi-button:hover {
+    background-color: #45a049;
+}
+
+.reversi-game-result {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reversi-game-result h3 {
+    margin-top: 0;
+    color: #d32f2f;
+}

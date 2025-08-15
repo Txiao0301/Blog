@@ -1,5 +1,6 @@
 import { Layout, Avatar, Menu } from 'antd';
 import { useLocation } from 'react-router-dom';
+import { jumpTo } from '../jump';
 
 
 const { Header } = Layout;
@@ -8,13 +9,14 @@ function MyHeader() {
 
     const location = useLocation();
     let current = location.pathname.substring(1)
-    if (current == '') {
+    if (current === '') {
         current = 'home'
     }
 
-    function gotoPage(ele:any) {
-        const path = ele.key
-        window.location.href = '/#/' + path
+    function gotoPage(ele: any) {
+        jumpTo(ele.key);
+        // const path = ele.key
+        // window.location.href = '/#/' + path
     }
 
     return (

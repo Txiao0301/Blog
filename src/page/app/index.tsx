@@ -1,6 +1,6 @@
 import { theme } from 'antd';
-import Game from '../../config/game';   
-
+import { jumpToOnNewTab } from '../../config/jump';
+import './index.css';
 
 function AppPage() {
 
@@ -10,7 +10,8 @@ function AppPage() {
 
     return (
         <div style={{ padding: 24, margin: 24, background: colorBgContainer }}>
-            <Game />
+            <div className='title' onClick={() => jumpToOnNewTab('ticTacToeGame')}>井字棋游戏</div>
+            <div className='title' onClick={() => jumpToOnNewTab('othelloGame')}>翻转棋游戏</div>
         </div>
     );
 };

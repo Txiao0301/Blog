@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { theme, Pagination, List, Space } from 'antd';
 import axios from 'axios';
 import '../../mock/blog.js';
+import {jumpToOnNewTabWithHash} from '../../config/jump';
 
 const BlogList: React.FC = () => {
 
@@ -41,7 +42,7 @@ const BlogList: React.FC = () => {
                     dataSource={list}
                     renderItem={({ id, title }) => (
                         <List.Item onClick={() => {
-                            window.open(`/#/blog/${id}`, '_blank');
+                            jumpToOnNewTabWithHash('blog', String(id));
                         }}>
                             {title}
                         </List.Item>

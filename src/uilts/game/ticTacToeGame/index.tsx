@@ -1,9 +1,14 @@
+import { theme } from 'antd';
 import React, { useState } from 'react';
-import Board from './board/index';
-import Popup from '../popup/index';
+import Board from './board';
+import Popup from '../../../config/popup/index';
 import './index.css';
 
-export default function Game() {
+export default function TicTacToeGame() {
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState(0);
   const xIsNext = currentMove % 2 === 0;
@@ -71,19 +76,21 @@ export default function Game() {
   }
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} resetGame={resetGame} />
+    <div style={{ padding: 24, margin: 24, background: colorBgContainer }}>
+      <div className="game">
+        <div className="game-board">
+          <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} resetGame={resetGame} />
+        </div>
+        <div className="game-info">
+          {gameInfo()}
+        </div>
+        <Popup
+          showModal={showResetModal}
+          content="确定要重置游戏吗？"
+          confirm={confirmResetGame}
+          cancel={cancelResetGame}
+        />
       </div>
-      <div className="game-info">
-        {gameInfo()}
-      </div>
-      <Popup
-        showModal={showResetModal}
-        content="确定要重置游戏吗？"
-        confirm={confirmResetGame}
-        cancel={cancelResetGame}
-      />
     </div>
   );
 }
