@@ -9,6 +9,7 @@ import BlogDetial from './page/blog/blogDetails'
 import AppPage from './page/app';
 import TicTacToeGame from './uilts/game/ticTacToeGame';
 import OthelloGame from './uilts/game/othelloGame';
+import LoginPage from './page/login';
 
 const { Content } = Layout;
 
@@ -27,6 +28,7 @@ const App: React.FC = () => {
                     <Route path='*' element={<div>404 Not Found</div>} />
                     <Route path='/ticTacToeGame' element={<TicTacToeGame/>} />
                     <Route path='/othelloGame' element={<OthelloGame/>} />
+                    <Route path='/login' element={<LoginPage/>} />
                 </Routes>
             </Content>
             <Footer />

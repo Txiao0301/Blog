@@ -1,9 +1,7 @@
-import { Layout, Avatar, Menu } from 'antd';
 import { useLocation } from 'react-router-dom';
 import { jumpTo } from '../jump';
-
-
-const { Header } = Layout;
+import { FaGraduationCap } from 'react-icons/fa';
+import './header.css';
 
 function MyHeader() {
 
@@ -15,45 +13,74 @@ function MyHeader() {
 
     function gotoPage(ele: any) {
         jumpTo(ele.key);
-        // const path = ele.key
-        // window.location.href = '/#/' + path
     }
 
     return (
-        <Header
-            style={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 1,
-                width: '100%',
-                display: 'flex',
-                alignItems: 'center',
-            }}
-        >
-            <Avatar
-                style={{ marginRight: 24 }}
-                src={'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'}
-            />
-            <Menu
-                theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={[current]}
-                items={[{
-                    key: 'home',
-                    label: '主页',
-                }, {
-                    key: 'blog',
-                    label: '文章'
-                }, {
-                    key: 'app',
-                    label: '应用'
-                }, {
-                    key: 'about',
-                    label: '关于'
-                }]}
-                onClick={(e) => gotoPage(e)}
-            />
-        </Header>
+        <header className="header">
+            <div className="container">
+                <div className="header-content">
+                    <div className="logo">
+                        <FaGraduationCap className="logo-icon" />
+                        个人<span>知识库</span>
+                    </div>
+                    <nav>
+                        <ul>
+                            <li>
+                                <a onClick={e => {
+                                    e.preventDefault();
+                                    gotoPage({ key: 'home' });
+                                }}
+                                    className={current === 'home' ? 'active' : ''}>
+                                    首页
+                                </a>
+                            </li>
+                            <li>
+                                <a onClick={e => {
+                                    e.preventDefault();
+                                    gotoPage({ key: 'analysis' });
+                                }}
+                                    className={current === 'analysis' ? 'active' : ''}>
+                                    统计分析
+                                </a>
+                            </li>
+                            <li>
+                                <a onClick={e => {
+                                    e.preventDefault();
+                                    gotoPage({ key: 'plan' });
+                                }}
+                                    className={current === 'plan' ? 'active' : ''}>
+                                    学习计划
+                                </a>
+                            </li>
+                            <li>
+                                <a onClick={e => {
+                                    e.preventDefault();
+                                    gotoPage({ key: 'wrong' });
+                                }}
+                                    className={current === 'wrong' ? 'active' : ''}>
+                                    错题本
+                                </a>
+                            </li>
+                            <li>
+                                <a onClick={e => {
+                                    e.preventDefault();
+                                    gotoPage({ key: 'material' });
+                                }}
+                                    className={current === 'material' ? 'active' : ''}>
+                                    备考资料
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div className="auth-buttons">
+                        <button className="btn btn-login" onClick={e => {
+                            gotoPage({ key: 'login' });
+                        }}> 登录</button>
+                        <button className="btn btn-register">注册</button>
+                    </div>
+                </div>
+            </div>
+        </header>
     );
 };
 

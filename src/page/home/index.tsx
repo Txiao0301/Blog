@@ -1,4 +1,5 @@
 import { theme } from 'antd';
+import HomePage from './homePage';
 
 
 function Home() {
@@ -8,7 +9,9 @@ function Home() {
     } = theme.useToken();
 
     return (
-        <div style={{ padding: 24, margin: 24, background: colorBgContainer }}>Hello World!</div>
+        <div style={{ padding: 24, margin: 24, background: colorBgContainer }}>
+            <HomePage />
+        </div>
     );
 };
 
